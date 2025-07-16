@@ -1,0 +1,33 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css");
+@import "tailwindcss";
+@import '@spencerwmiles/tailwind-material-symbols';
+
+@theme{
+
+  --font-pretendard: 'Pretendard', 'sans-serif';
+  
+  --color-gray50: #f5f5f5;
+  --color-gray100: #e0e0e0;
+  --color-gray200: #cccccc;
+  --color-gray300: #b8b8b8;
+  --color-gray400: #a3a3a3;
+  --color-gray500: #8f8f8f;
+  --color-gray600: #7a7a7a;
+
+  --color-green600: #3cc217;
+  --color-green700: #2aa00a;
+}
+
+
+.filled-icon {
+  font-variation-settings:
+    'FILL' 1,
+    'wght' 400,
+    'GRAD' 0,
+    'opsz' 24;
+}
+
+.material-symbols-outlined {
+  font-size: revert-layer;
+}
+
