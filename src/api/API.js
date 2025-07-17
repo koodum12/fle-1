@@ -50,6 +50,7 @@ export function startPolling(newValue, onUpdate) {
 
       if (typeof onUpdate === 'function') {
         onUpdate({ temperature, humidity });
+        console.log(temperature, humidity);
       }
     } catch (err) {
       if (err.code === 'ECONNABORTED') {
