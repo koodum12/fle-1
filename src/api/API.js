@@ -14,7 +14,7 @@ export function stopPolling(value) {
   clearTimeout(pollTimeout);
   console.log('🔷 폴링 중단');
 
-  axios.post(`${BASE_URL}/command/${value}`, {}, {
+  axios.post(`${BASE_URL}/command/${5}`, {}, {
     headers: { 'Content-Type': 'application/json' }
   })
   .then(() => {
