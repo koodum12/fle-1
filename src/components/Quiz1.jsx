@@ -62,7 +62,7 @@ export default function Quiz1() {
           ))}
         </div>
 
-        <div className="flex flex-wrap mt-4 mb-10 text-center ml-[2rem]">
+        <div className="flex flex-wrap mt-10 text-center ml-[2rem]">
           {answerKey.map((data, idx) => (
             <div
               key={idx}

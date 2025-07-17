@@ -3,7 +3,6 @@ import axios from 'axios';
 const BASE_URL = 'https://192.168.37.42:9443';
 
 let active = false;
-let pollingValue = null;
 let pollTimeout = null;
 
 export function stopPolling() {
@@ -12,21 +11,29 @@ export function stopPolling() {
   console.log('폴링 중지');
 }
 
-// 새 값이 들어올 때마다 호출됨
 export function startPolling(newValue, onUpdate) {
-  if (newValue === pollingValue) {
-    console.log('같은 value로 이미 폴링 중입니다:', newValue);
+  if (active) {
+    console.log('이미 폴링 중입니다');
     return;
   }
 
   if (newValue === 5) {
     stopPolling();
-    pollingValue = null;
     return;
   }
 
-  pollingValue = newValue;
   active = true;
+
+  // 🔷 최초 값 전송
+  axios.post(`${BASE_URL}/command`, { value: newValue }, { timeout: 2000 })
+    .then(() => {
+      console.log(`✅ 초기 value(${newValue}) 전송 성공`);
+      poll(); // 폴링 시작
+    })
+    .catch((err) => {
+      console.error(`❌ 초기 value(${newValue}) 전송 실패`, err);
+      stopPolling();
+    });
 
   async function poll() {
     if (!active) {
@@ -35,28 +42,24 @@ export function startPolling(newValue, onUpdate) {
     }
 
     try {
-      const res = await axios.post(`${BASE_URL}/command/${pollingValue}`, null, {
-        timeout: 2000, // ⏱ 타임아웃 설정
+      const res = await axios.get(`${BASE_URL}/status`, {
+        timeout: 2000,
       });
 
       const { temperature, humidity } = res.data;
 
       if (typeof onUpdate === 'function') {
-        onUpdate({ temperature, humidity, value: pollingValue });
+        onUpdate({ temperature, humidity });
       }
     } catch (err) {
       if (err.code === 'ECONNABORTED') {
         console.log('⛔ 폴링 실패! (요청 시간 초과)');
       }
-      console.error(`value=${pollingValue} 요청 실패`, err);
-
+      console.error('폴링 요청 실패', err);
     }
 
-    // 다음 폴링 예약
     if (active) {
       pollTimeout = setTimeout(poll, 2000);
     }
   }
-
-  poll();
 }
