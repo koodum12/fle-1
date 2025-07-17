@@ -18,6 +18,7 @@ export function startPolling(newValue, onUpdate) {
   }
 
   if (newValue === 5) {
+    axios.post(`${BASE_URL}/command${newvalue}`,null)
     stopPolling();
     return;
   }
