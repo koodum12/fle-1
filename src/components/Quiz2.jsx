@@ -48,7 +48,7 @@ function Quiz2() {
 
   const handleCloseModal = () => {
     setShowFirmwareModal(false);
-    stopPolling(); // 폴링 종료 (value=5 전송 포함됨)
+    stopPolling(5); // 폴링 종료 (value=5 전송 포함됨)
   };
 
   const handleRun = async () => {
