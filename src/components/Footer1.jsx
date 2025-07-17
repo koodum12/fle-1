@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function Footer1({ setLevel }) {
   const navigate = useNavigate();
+  
 
   const handlePress = (n) => {
     if (typeof setLevel !== "function") {
