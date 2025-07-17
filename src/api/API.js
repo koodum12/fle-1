@@ -14,15 +14,15 @@ export function stopPolling(value) {
   clearTimeout(pollTimeout);
   console.log('🔷 폴링 중단');
 
-  if (value !== undefined) {
-    axios.post(`${BASE_URL}/command/${value}`, null)
-      .then(() => {
-        console.log(`✅ stopPolling 시 value(${value}) 전송 성공`);
-      })
-      .catch((err) => {
-        console.error(`❌ stopPolling 시 value(${value}) 전송 실패`, err);
-      });
-  }
+  axios.post(`${BASE_URL}/command/${value}`, {}, {
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then(() => {
+    console.log(`✅ stopPolling 시 value(${value}) 전송 성공`);
+  })
+  .catch((err) => {
+    console.error(`❌ stopPolling 시 value(${value}) 전송 실패`, err);
+  });
 }
 
 /**
