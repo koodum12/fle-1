@@ -124,8 +124,12 @@ function Quiz2() {
           <div className="bg-white rounded-lg shadow-lg p-6 max-w-sm w-[90vw] text-center relative">
             <div className="font-pretendard font-bold text-2xl">Web Server Data</div>
             <hr className="my-2" />
-            <div className="font-pretendard font-bold">온도: <span>{temperature ?? '-'}</span>°</div>
-            <div className="font-pretendard font-bold">습도: <span>{humidity ?? '-'}</span>%</div>
+            <div className="font-pretendard font-bold">
+              온도: <span>{temperature === 1000 ? '-' : temperature ?? '-'}</span>°
+            </div>
+            <div className="font-pretendard font-bold">
+              습도: <span>{humidity === 1000 ? '-' : humidity ?? '-'}</span>%
+            </div>
           </div>
 
           <button

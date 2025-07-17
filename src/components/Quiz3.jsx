@@ -168,7 +168,6 @@ export default Quiz3;
 // 정답 비교 함수
 function normalizeCode(code) {
   return code
-    .trim()                         // 전체 문자열 앞뒤 공백 제거
     .split('\n')
     .map(line => line.trim())
     .filter(line => line)
