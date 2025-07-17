@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://192.168.37.42:8080';
+const BASE_URL = 'https://192.168.37.42:9443';
 
 let active = false;
 let pollTimeout = null;
