@@ -8,10 +8,9 @@ export default function Footer1({setLevel}) {
 
   const handleMouseUp = (n) => {
     navigate('/');
-    /*
+    
     setLevel(n);
     
-    */
   };
 
   return (
