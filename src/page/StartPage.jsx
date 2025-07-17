@@ -7,7 +7,7 @@ export default function StartPage(){
   return (
     <div>
       <List1 level={level} setLevel={setLevel}/>
-      <Footer1 />
+      <Footer1 setLevel={setLevel}/>
     </div>
   );
 }
