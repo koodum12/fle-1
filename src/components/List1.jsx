@@ -53,6 +53,7 @@ const StepCard = ({ step, title, stars, icon, link }) => {
 
   const handleClick = () => {
     if (link && link !== "*") {
+      console.log(link, link)
       navigate(link);
     }
   };
