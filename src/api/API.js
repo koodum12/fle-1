@@ -19,7 +19,7 @@ export function startPolling(newValue, onUpdate) {
 
   if (newValue === 5) {
     axios.post(`${BASE_URL}/command${newvalue}`,null)
-    stopPolling();
+    stopPolling(newValue);
     return;
   }
 
@@ -33,7 +33,7 @@ export function startPolling(newValue, onUpdate) {
     })
     .catch((err) => {
       console.error(`❌ 초기 value(${newValue}) 전송 실패`, err);
-      stopPolling();
+      stopPolling(5);
     });
 
   async function poll() {
