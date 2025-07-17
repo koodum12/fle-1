@@ -37,10 +37,7 @@ export function startPolling(newValue, onUpdate) {
   }
 
   if (newValue === 5) {
-    axios.post(`${BASE_URL}/command/5`, null)
-      .then(() => console.log(`✅ value(5) 전송 성공`))
-      .catch(err => console.error(`❌ value(5) 전송 실패`, err));
-    stopPolling();
+    stopPolling(5);  // 여기서 5를 넘겨서 stop과 함께 전송
     return;
   }
 
