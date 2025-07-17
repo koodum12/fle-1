@@ -26,7 +26,7 @@ export function startPolling(newValue, onUpdate) {
   active = true;
 
   // 🔷 최초 값 전송
-  axios.post(`${BASE_URL}/command${newValue}`,null, { timeout: 2000 })
+  axios.post(`${BASE_URL}/command/${newValue}`,null, { timeout: 2000 })
     .then(() => {
       console.log(`✅ 초기 value(${newValue}) 전송 성공`);
       poll(); // 폴링 시작
