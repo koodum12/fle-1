@@ -43,7 +43,7 @@ export function startPolling(newValue, onUpdate) {
     }
 
     try {
-      const res = await axios.get(`${BASE_URL}/status`, {
+      const res = await axios.get(`${BASE_URL}/temperature-and-humidity`, {
         timeout: 2000,
       });
 
