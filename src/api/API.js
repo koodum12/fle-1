@@ -14,15 +14,15 @@ export function stopPolling(value) {
   clearTimeout(pollTimeout);
   console.log('🔷 폴링 중단');
 
-  axios.post(`${BASE_URL}/command/${5}`, {}, {
-    headers: { 'Content-Type': 'application/json' }
-  })
-  .then(() => {
-    console.log(`✅ stopPolling 시 value(${value}) 전송 성공`);
-  })
-  .catch((err) => {
-    console.error(`❌ stopPolling 시 value(${value}) 전송 실패`, err);
-  });
+  if (value !== undefined) {
+    axios.post(`${BASE_URL}/command/${value}`, null)
+      .then(() => {
+        console.log(`✅ stopPolling 시 value(${value}) 전송 성공`);
+      })
+      .catch((err) => {
+        console.error(`❌ stopPolling 시 value(${value}) 전송 실패`, err);
+      });
+  }
 }
 
 /**
@@ -37,7 +37,7 @@ export function startPolling(newValue, onUpdate) {
   }
 
   if (newValue === 5) {
-    stopPolling(5);  // 여기서 5를 넘겨서 stop과 함께 전송
+    stopPolling('5');  // 여기서 5를 넘겨서 stop과 함께 전송
     return;
   }
 
@@ -51,7 +51,7 @@ export function startPolling(newValue, onUpdate) {
     })
     .catch((err) => {
       console.error(`❌ 초기 value(${newValue}) 전송 실패`, err);
-      stopPolling(5);
+      stopPolling('5');
     });
 
   // 내부 폴링 함수
